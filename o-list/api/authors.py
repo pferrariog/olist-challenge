@@ -3,16 +3,18 @@ from typing import Annotated
 from fastapi import APIRouter
 from fastapi import Depends
 
-from ..services.authors import Service
+from ..models.repository.authors import AuthorRepository
 
 
 router = APIRouter("/authors", tags=["Authors"])
 
 
-router.get("/")
+@router.get("/")
+def get_authors(repo: Annotated[AuthorRepository, Depends()], name: str | None = None, page: int | None = None) -> ...:
+    """Get authors from database"""
+    if name:
+        author = repo.get_by_name(name)
+        if not author:
+            raise ...
 
-
-def get_authors(service: Annotated[Service, Depends()]) -> ...:
-    """Get all authors from database"""
-    authors = service.get_all()
-    return authors
+    return repo.get_all_paginated(page)

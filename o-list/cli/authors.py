@@ -2,7 +2,8 @@ import csv
 
 from typer import Typer
 
-from ..services.authors import Service
+from ..core.database import get_db_connection
+from ..models.repository.authors import AuthorRepository
 
 
 app = Typer()
@@ -11,7 +12,7 @@ app = Typer()
 @app.command()
 def import_authors(csv_file_path: str) -> None:
     """Import authors from csv file by CLI command"""
-    service = Service(...)
+    repository = AuthorRepository(get_db_connection())
 
     with open(csv_file_path) as file:
         file = csv.reader(file)
@@ -20,6 +21,9 @@ def import_authors(csv_file_path: str) -> None:
             if idx == 0 or not name:
                 continue
             try:
-                service.create(name[0])
+                repository.create(name[0])
             except Exception:
                 ...
+
+    # TODO prettier print with rich
+    # TODO add progress bar and success/fail numbers
