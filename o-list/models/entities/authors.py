@@ -1,12 +1,6 @@
-from sqlalchemy.orm import DeclarativeBase
+from entities import Base
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
-
-
-class Base(DeclarativeBase):
-    """Base SQLAlchemy Model"""
-
-    pass
 
 
 class Author(Base):

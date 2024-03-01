@@ -97,7 +97,8 @@ exclude = [
   ".venv/*",
   ".idea/*",
   ".vscode/*",
-  "./migrations/*"
+  "./migrations/*",
+  "*/__init__.py"
 ]
 
 [tool.bandit]
