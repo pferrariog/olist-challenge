@@ -1,13 +1,13 @@
-from typing import Generator
+from typing import AsyncGenerator
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
-
-
-engine = create_engine("sqlite:///database.db")
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.ext.asyncio import create_async_engine
 
 
-def get_db_connection() -> Generator:
+engine = create_async_engine("sqlite:///database.db")
+
+
+async def get_db_connection() -> AsyncGenerator:
     """Generate a database session"""
-    with Session(autocommit=False, autoflush=False, bind=engine) as session:
+    async with AsyncSession(autocommit=False, autoflush=False, bind=engine) as session:
         yield session

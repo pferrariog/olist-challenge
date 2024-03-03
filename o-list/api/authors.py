@@ -15,13 +15,13 @@ router = APIRouter(prefix="/authors", tags=["Authors"])
 
 
 @router.get("/")
-def get_authors(
+async def get_authors(
     repo: Annotated[AuthorRepository, Depends()], name: str | None = None, page: int | None = None
 ) -> Union[AuthorSchema, AuthorsListSchema, None]:
     """Get authors from database"""
     if name:
-        author = repo.get_by_name(name)
+        author = await repo.get_by_name(name)
         if not author:
             raise HTTPException(404, "Author not found")
 
-    return repo.get_all_paginated(page)
+    return await repo.get_all_paginated(page)
