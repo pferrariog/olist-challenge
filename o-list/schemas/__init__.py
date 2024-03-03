@@ -1,2 +1,2 @@
-from authors import AuthorSchema
-from authors import AuthorsListSchema
+from .authors import AuthorSchema
+from .authors import AuthorsListSchema
