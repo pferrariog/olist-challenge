@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -14,3 +16,9 @@ class BookCompleteSchema(BookSchema):
     """Book's endpoint complete fields"""
 
     id: int
+
+
+class BookOptional(BookSchema):
+    """Book's endpoint optional schema"""
+
+    __annotations__ = {key: Optional[value] for key, value in BookSchema.__annotations__.items()}

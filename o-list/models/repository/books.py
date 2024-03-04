@@ -2,8 +2,10 @@ from typing import Annotated
 
 from core.database import get_db_connection
 from fastapi import Depends
+from fastapi import HTTPException
 from models.entities.books import Book
 from models.repository.authors import AuthorRepository
+from schemas.books import BookOptional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -22,8 +24,8 @@ class BookRepository:
 
         for author_id in authors_ids:
             current_author = author_repo.get_by_id(author_id)
-            if not current_author:
-                raise ...
+            if not book:
+                raise HTTPException(404, detail="Author not found")
             book.authors.append(current_author)
 
         self.session.add(book)
@@ -34,13 +36,23 @@ class BookRepository:
         """Get book register by given id"""
         return await self.session.scalar(select(Book).where(Book.id == id))
 
-    async def update_book(self, **kw) -> Book | None:
+    async def update_book(self, id: int, updated_fields: BookOptional) -> Book | None:
         """Update fields in a book register"""
+        book = self.get_by_id(id)
+        if not book:
+            raise HTTPException(404, detail="Book not found")
+
+        for key, value in updated_fields.model_dump().items():
+            setattr(book, key, value)
+
+        self.session.commit()
+        self.session.refresh(book)
+        return await book
 
     async def delete_by_id(self, id: int) -> None:
         """Delete a book register from database"""
         book = self.get_by_id(id)
         if not book:
-            raise ...
+            raise HTTPException(404, detail="Book not found")
         self.session.delete(book)
         await self.session.commit()
