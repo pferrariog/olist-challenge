@@ -22,6 +22,10 @@ class AuthorRepository:
 
         return await self.session.scalars(query).all()
 
-    async def get_by_name(self, name: str | None = None) -> Author:
+    async def get_by_name(self, name: str) -> Author | None:
         """Get author by name"""
         return await self.session.scalar(select(Author).where(Author.name == name))
+
+    async def get_by_id(self, id: int) -> Author | None:
+        """Get author by id"""
+        return await self.session.scalar(select(Author).where(Author.id == id))

@@ -11,8 +11,6 @@ from schemas import AuthorsListSchema
 
 router = APIRouter(prefix="/authors", tags=["Authors"])
 
-# TODO add async requests
-
 
 @router.get("/")
 async def get_authors(
