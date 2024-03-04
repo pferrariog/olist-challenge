@@ -16,6 +16,7 @@ pydantic-settings = "^2.0.3"
 psycopg2 = "^2.9.9"
 typer = "^0.9.0"
 dynaconf = "^3.2.4"
+asyncpg = "^0.29.0"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^6.1.0"

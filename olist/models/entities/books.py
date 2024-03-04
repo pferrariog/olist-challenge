@@ -1,8 +1,9 @@
-from entities import Base
-from entities.authors import Author
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
+
+from . import Base
+from .authors import Author
 
 
 class Book(Base):
@@ -14,4 +15,4 @@ class Book(Base):
     name: Mapped[str]
     edition: Mapped[int]
     publication_year: Mapped[int]
-    authors: list[Author] = relationship("Author")
+    authors: Mapped[list[Author]] = relationship("Author")

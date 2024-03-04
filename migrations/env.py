@@ -2,12 +2,11 @@ from asyncio import run
 from logging.config import fileConfig
 
 from alembic import context
+from olist.core.settings import settings
+from olist.models.entities import Base
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import AsyncEngine
-
-from ..olist.core.settings import settings
-from ..olist.models import Base
 
 
 # this is the Alembic Config object, which provides
