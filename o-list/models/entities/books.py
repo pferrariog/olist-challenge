@@ -12,6 +12,6 @@ class Book(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
-    edition: Mapped[str]
+    edition: Mapped[int]
     publication_year: Mapped[int]
     authors: list[Author] = relationship("Author")
