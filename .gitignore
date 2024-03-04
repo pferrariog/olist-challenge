@@ -4,3 +4,4 @@ poetry.toml
 database.db
 .env
 .pytest_cache
+settings.yaml

@@ -15,6 +15,7 @@ alembic = "^1.12.0"
 pydantic-settings = "^2.0.3"
 psycopg2 = "^2.9.9"
 typer = "^0.9.0"
+dynaconf = "^3.2.4"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^6.1.0"
