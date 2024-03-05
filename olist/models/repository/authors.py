@@ -1,10 +1,11 @@
 from typing import Annotated
 
-from core.database import get_db_connection
 from fastapi import Depends
-from models.entities.authors import Author
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from ...core.database import get_db_connection
+from ..entities.authors import Author
 
 
 class AuthorRepository:

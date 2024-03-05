@@ -4,9 +4,10 @@ from typing import Union
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import HTTPException
-from models.repository.authors import AuthorRepository
-from schemas import AuthorSchema
-from schemas import AuthorsListSchema
+
+from ..models.repository.authors import AuthorRepository
+from ..schemas import AuthorSchema
+from ..schemas import AuthorsListSchema
 
 
 router = APIRouter(prefix="/authors", tags=["Authors"])

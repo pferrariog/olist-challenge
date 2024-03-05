@@ -1,18 +1,19 @@
-from api import author_router
-from api import book_router
-from cli.authors import app as authors_app
 from fastapi import APIRouter
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from typer import Typer
+
+from .api import author_router
+from .api import book_router
+from .cli.authors import app as authors_app
 
 
 def create_fastapi_app(title: str, description: str, routers: list[APIRouter]) -> FastAPI:
     """Create a customized FastAPI instance"""
     app = FastAPI(title=title, description=description)
 
-    for route in routers:
-        app.add_api_route(route)
+    for router in routers:
+        app.include_router(router)
 
     app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"])
 
