@@ -3,11 +3,10 @@ from typing import Union
 
 from fastapi import APIRouter
 from fastapi import Depends
-
-from ..models.repository.books import BookRepository
-from ..schemas import BookCompleteSchema
-from ..schemas import BookOptional
-from ..schemas import BookSchema
+from models.repository.books import BookRepository
+from schemas import BookCompleteSchema
+from schemas import BookOptional
+from schemas import BookSchema
 
 
 router = APIRouter(prefix="/books", tags=["Books"])

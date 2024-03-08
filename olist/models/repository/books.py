@@ -1,12 +1,12 @@
 from typing import Annotated
 
+from core.database import get_db_connection
 from fastapi import Depends
 from fastapi import HTTPException
+from schemas.books import BookOptional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ...core.database import get_db_connection
-from ...schemas.books import BookOptional
 from ..entities.books import Book
 from .authors import AuthorRepository
 

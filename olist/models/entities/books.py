@@ -15,4 +15,4 @@ class Book(Base):
     name: Mapped[str]
     edition: Mapped[int]
     publication_year: Mapped[int]
-    authors: Mapped[list[Author]] = relationship("Author")
+    authors: Mapped[list["Author"]] = relationship()

@@ -1,10 +1,9 @@
 import csv
 
+from core.database import get_db_connection
+from models.repository.authors import AuthorRepository
 from rich.progress import Progress
 from typer import Typer
-
-from ..core.database import get_db_connection
-from ..models.repository.authors import AuthorRepository
 
 
 app = Typer()

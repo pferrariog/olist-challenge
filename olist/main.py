@@ -1,11 +1,10 @@
+from api import author_router
+from api import book_router
+from cli.authors import app as authors_app
 from fastapi import APIRouter
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from typer import Typer
-
-from .api import author_router
-from .api import book_router
-from .cli.authors import app as authors_app
 
 
 def create_fastapi_app(title: str, description: str, routers: list[APIRouter]) -> FastAPI:
